@@ -1,0 +1,24 @@
+.header_comp{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 4rem;
+    padding-bottom: 20px;
+    color: black;
+}
+
+.header_comp li:hover{
+    cursor: pointer;
+}
+
+.header{
+    box-shadow: 4px 3px rgb(154, 153, 153);
+}
+
+.header_comp li a{
+    color:black;
+    font-weight: 700;
+}
+
+
+

@@ -1,9 +1,12 @@
 import React from 'react'
+import Banner from '../banner/Banner.js'
+import Categories from '../categories/Categories.js'
 
 const Home = () => {
   return (
     <div>
-      hello guys i am aman
+      <Banner/>
+      <Categories/>
     </div>
   )
 }

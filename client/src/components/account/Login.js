@@ -15,7 +15,7 @@ const loginInitialvalues = {
   password:'',
 }
 
-function Login() {
+function Login({isAuthenticated}) {
   const [isLogin,setIsLogin] = useState(true);
   const [signUp,setSignUp] = useState(signUpInitialvalues);
   const [login,setLogin] = useState(loginInitialvalues);
@@ -58,6 +58,7 @@ function Login() {
       sessionStorage.setItem('refreshToken',`Bearer ${res.data.refreshToken}`)
       setAccount({username:res.data.username,name:res.data.name})
       navigate('/');
+      isAuthenticated(true);
     }else{
       setError('Something Went Wrong! Please try again Later');
     }
@@ -71,17 +72,17 @@ function Login() {
           isLogin === true 
           ?
             <div>
-              <input type='text' className='username' onChange={onValueChange} placeholder='Enter Username' name='username' />
-              <input type='password' className='password' placeholder='Enter Password' onChange={onValueChange} name='password' />
+              <input type='text' autocomplete="off" className='username' onChange={onValueChange} placeholder='Enter Username' name='username' />
+              <input type='password' autocomplete="off" className='password' placeholder='Enter Password' onChange={onValueChange} name='password' />
               <button className='login_btn' onClick={loginUser}>Login</button>
               <p className='or_singup'>OR</p>
               <button className='create_account_btn' onClick={toggleLogin}>Create An Account</button>
             </div>
           :
           <div>
-          <input type='text' className='username' onChange={onInputChange} placeholder='Enter Name' name='name' />
-          <input type='text' className='username' onChange={onInputChange} placeholder='Enter Username' name='username' />
-          <input type='password' className='password' onChange={onInputChange} placeholder='Enter Password' name='password' />
+          <input type='text' autocomplete="off" className='username' onChange={onInputChange} placeholder='Enter Name' name='name' />
+          <input type='text' autocomplete="off" className='username' onChange={onInputChange} placeholder='Enter Username' name='username' />
+          <input type='password' autocomplete="off" className='password' onChange={onInputChange} placeholder='Enter Password' name='password' />
           {error && <p>{error}</p>}
           <button className='create_account_btn' onClick={signUpUser}>Sign Up</button>
           <p className='or_singup'>OR</p>
