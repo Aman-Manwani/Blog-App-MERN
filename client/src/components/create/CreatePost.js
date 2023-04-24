@@ -2,10 +2,10 @@ import React from "react";
 import header_img from "./creative.jpg";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./CreatePost.css";
-import { useState, useEffect,useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useLocation,useNavigate } from "react-router-dom";
 import { DataContext } from "../../context/DataProvider";
-import {API} from '../../service/api'
+import { API } from "../../service/api";
 
 const initialPost = {
   title: "",
@@ -16,33 +16,41 @@ const initialPost = {
   createdDate: new Date(),
 };
 
-
 const CreatePost = () => {
   const [post, setPost] = useState(initialPost);
   const [file, setFile] = useState("");
-  
+
   const imgDirected = post.picture ? post.picture : header_img;
-  
+
   const handleChange = (e) => {
-    setPost(...post, { [e.target.name]: e.target.value });
+    setPost({ ...post, [e.target.name]: e.target.value });
   };
 
+  
   const location = useLocation();
+  const navigate = useNavigate();
+  
+const savePost = async() => {
+  let response = await API.createPost(post)
+  if(response.isSuccess){
+    navigate('/');
+  }
+}
 
-  const {account} = useContext(DataContext);
+  const { account } = useContext(DataContext);
 
   useEffect(() => {
-    const getImage = async() => {
-      if(file){
-        const data = new FormData();
-        data.append("name",file.name)
-        data.append("file",file);
-        const res = await API.uploadFile(data);
-        post.picture = ''
+    const getImage = async () => {
+      if (file) {
+        const damta = new FormData();
+        damta.append("name", file.name);
+        damta.append("file", file);
+        const res = await API.uploadFile(damta);
+        post.picture = res.data;
       }
-    }
+    };
     getImage();
-    post.categories = location.search?.split('=')[1] || 'All';
+    post.categories = location.search?.split("=")[1] || "All";
     post.username = account.username;
   }, [file]);
 
@@ -55,9 +63,7 @@ const CreatePost = () => {
         </label>
         <input
           type="file"
-          onChange={(e) => {
-            setFile(e.target.files[0]);
-          }}
+          onChange={(e) => setFile(e.target.files[0])}
           id="fileInput"
           className="img_upload_create"
         />
@@ -68,7 +74,7 @@ const CreatePost = () => {
           className="title_blog"
           placeholder="Title"
         />
-        <button className="publish_btn">Publish</button>
+        <button className="publish_btn" onClick={savePost}>Publish</button>
       </div>
       <div className="blog_content">
         <textarea

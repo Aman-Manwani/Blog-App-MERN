@@ -1,7 +1,7 @@
 export const categoriees = [
     { id:1,type:'Music' },
-    { id:1,type:'Movies' },
-    { id:1,type:'Sports' },
-    { id:1,type:'Tech' },
-    { id:1,type:'Sports' },
+    { id:2,type:'Movies' },
+    { id:3,type:'Sports' },
+    { id:4,type:'Tech' },
+    { id:5,type:'Sports' },
 ]

@@ -21,8 +21,8 @@ const Categories = () => {
           <p className="all_cate">All Categories</p>
         </Link>
         {categoriees.map((category) => (
-          <Link style={{textDecoration:'none',color:'inherit'}} to={`/?category=${category.type}`}>
-          <p className="cate" key={category.id}>
+          <Link key={category.id} style={{textDecoration:'none',color:'inherit'}} to={`/?category=${category.type}`}>
+          <p className="cate">
             {category.type}
           </p>
           </Link>

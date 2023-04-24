@@ -72,17 +72,17 @@ function Login({isAuthenticated}) {
           isLogin === true 
           ?
             <div>
-              <input type='text' autocomplete="off" className='username' onChange={onValueChange} placeholder='Enter Username' name='username' />
-              <input type='password' autocomplete="off" className='password' placeholder='Enter Password' onChange={onValueChange} name='password' />
+              <input type='text' autoComplete="off" className='username' onChange={onValueChange} placeholder='Enter Username' name='username' />
+              <input type='password' autoComplete="off" className='password' placeholder='Enter Password' onChange={onValueChange} name='password' />
               <button className='login_btn' onClick={loginUser}>Login</button>
               <p className='or_singup'>OR</p>
               <button className='create_account_btn' onClick={toggleLogin}>Create An Account</button>
             </div>
           :
           <div>
-          <input type='text' autocomplete="off" className='username' onChange={onInputChange} placeholder='Enter Name' name='name' />
-          <input type='text' autocomplete="off" className='username' onChange={onInputChange} placeholder='Enter Username' name='username' />
-          <input type='password' autocomplete="off" className='password' onChange={onInputChange} placeholder='Enter Password' name='password' />
+          <input type='text' autoComplete="off" className='username' onChange={onInputChange} placeholder='Enter Name' name='name' />
+          <input type='text' autoComplete="off" className='username' onChange={onInputChange} placeholder='Enter Username' name='username' />
+          <input type='password' autoComplete="off" className='password' onChange={onInputChange} placeholder='Enter Password' name='password' />
           {error && <p>{error}</p>}
           <button className='create_account_btn' onClick={signUpUser}>Sign Up</button>
           <p className='or_singup'>OR</p>

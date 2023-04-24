@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_NOTIFICATION_MESSAGES, SERVICE_URLS } from "../constants/config";
+import { getAccessToken } from "../utils/common-utils";
 
 const API_URL = "http://localhost:8000";
 
@@ -23,9 +24,9 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   function (response) {
     // we can display the loader here
-    console.log("a");
+    // console.log("a");
     const abc = processResponse(response);
-    console.log(abc);
+    // console.log(abc);
     return abc;
   },
   function (error) {
@@ -34,9 +35,9 @@ axiosInstance.interceptors.response.use(
 );
 
 const processResponse = (response) => {
-  console.log(response);
+  // console.log(response);
   if (response?.status === 200) {
-    console.log("hug");
+    // console.log("hug");
     return { isSuccess: true, data: response.data };
   } else {
     return {
@@ -82,6 +83,9 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
       url: value.url,
       data: body,
       responseType: value.responseType,
+      headers:{
+        authorization:getAccessToken()
+      },
       onUploadProgress: function (progressEvent) {
         if (showUploadProgress) {
           let percentComp = Math.round(
