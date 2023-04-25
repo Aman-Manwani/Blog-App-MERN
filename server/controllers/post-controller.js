@@ -12,4 +12,15 @@ const createPost = async(request,response) => {
     }
 }
 
-module.exports = createPost;
+const getAllPosts = async(req,res) => {
+    try{
+        const allPosts =await Post.find({});
+        res.status(201).json(allPosts)
+    }
+    catch(error){
+        console.log('error in fetching posts',error);
+        res.status(500).json({msg:error})
+    }
+}
+
+module.exports = {createPost,getAllPosts};

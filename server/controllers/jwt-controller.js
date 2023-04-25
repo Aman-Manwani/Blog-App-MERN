@@ -8,7 +8,7 @@ const authenticateToken = (req,res,next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
-    if(token==NULL){
+    if(token==null){
         return res.status(401).json({msg: 'token is missing'});
     }
 
@@ -22,3 +22,4 @@ const authenticateToken = (req,res,next) => {
 }
 
 module.exports = authenticateToken;
+

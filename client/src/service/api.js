@@ -35,9 +35,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const processResponse = (response) => {
-  // console.log(response);
   if (response?.status === 200) {
-    // console.log("hug");
     return { isSuccess: true, data: response.data };
   } else {
     return {
