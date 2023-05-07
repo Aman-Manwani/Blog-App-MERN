@@ -1,20 +1,33 @@
-const express = require('express')
-const userController = require('../controllers/user-controller')
-const uploadImage = require('../controllers/image-controller.js')
-const upload = require('../utils/upload.js')
-const authenticateToken = require('../controllers/jwt-controller');
-const postController = require('../controllers/post-controller');
+import express from 'express';
 
+import { createPost, updatePost, deletePost, getPost, getAllPosts } from '../controller/post-controller.js';
+import { uploadImage, getImage } from '../controller/image-controller.js';
+import { newComment, getComments, deleteComment } from '../controller/comment-controller.js';
+import { loginUser, singupUser, logoutUser } from '../controller/user-controller.js';
+import { authenticateToken, createNewToken } from '../controller/jwt-controller.js';
+
+import upload from '../utils/upload.js';
 
 const router = express.Router();
 
-router.post('/signup',userController.userSignUp);
-router.post('/login',userController.userLogin);
+router.post('/login', loginUser);
+router.post('/signup', singupUser);
+router.post('/logout', logoutUser);
 
-router.post('/file/upload',upload.single('file') ,uploadImage);
+router.post('/token', createNewToken);
 
-router.post('/create', authenticateToken ,postController.createPost);
+router.post('/create', authenticateToken, createPost);
+router.put('/update/:id', authenticateToken, updatePost);
+router.delete('/delete/:id', authenticateToken, deletePost);
 
-router.get('/posts',authenticateToken,postController.getAllPosts);
+router.get('/post/:id', authenticateToken, getPost);
+router.get('/posts', authenticateToken, getAllPosts);
 
-module.exports = router;
+router.post('/file/upload', upload.single('file'), uploadImage);
+router.get('/file/:filename', getImage);
+
+router.post('/comment/new', authenticateToken, newComment);
+router.get('/comments/:id', authenticateToken, getComments);
+router.delete('/comment/delete/:id', authenticateToken, deleteComment);
+
+export default router;
