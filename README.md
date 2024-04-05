@@ -1,7 +1,7 @@
 # Blog-App-MERN
 This app allows us to create and read BLOGS
 
-🎥 [LIVE soon](soon) </br>
+🎥 [LIVE soon](https://blogify4u.netlify.app/) </br>
 Have a look at this awesome web application Blogify, created to Read and Write Blogs </br>
 
 Features included: </br>
